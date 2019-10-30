@@ -5,11 +5,15 @@
 // ID card dimensions = 92mm * 60 mm
 // Apsect ratio = 1.533 : 1
 
+const CANVAS_WIDTH  = 1533;
+const CANVAS_HEIGHT = 1000;
 const BORDER_RADIUS = 50;
 
 window.addEventListener('DOMContentLoaded', () => {
 	const canvas = document.querySelector('#id-card');
 	if (!(canvas instanceof HTMLCanvasElement)) return;
+	canvas.width = CANVAS_WIDTH;
+	canvas.height = CANVAS_HEIGHT;
 	const ctx = canvas.getContext('2d');
 	if (!(ctx instanceof CanvasRenderingContext2D)) return;
 
@@ -43,7 +47,8 @@ window.addEventListener('DOMContentLoaded', () => {
 	const redrawCard = () => {
 		const name = document.querySelector('#char-name').value.toUpperCase();
 		const eyeColor = document.querySelector('#eye-color').value.toUpperCase();
-		const city = document.querySelector('#city').value.toUpperCase() + ', EQUESTRIA';
+		const cityEl = document.querySelector('#city');
+		const city = cityEl.options[cityEl.selectedIndex].text.toUpperCase();
 
 		ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -53,7 +58,7 @@ window.addEventListener('DOMContentLoaded', () => {
 		ctx.font = '77pt \'Patrick Hand\',sans-serif';
 		ctx.textBaseline = 'alphabetic';
 
-		ctx.fillText(name, 1.41*380, 1.41*265, 500);
+		ctx.fillText(name, 536, 374, 500);
 	};
 
 	document.querySelectorAll(['input, select']).forEach(input => {
