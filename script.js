@@ -1,4 +1,7 @@
-const BORDER_RADIUS = 55;
+// ID card dimensions = 92mm * 60 mm
+// Apsect ratio = 1.533 : 1
+
+const BORDER_RADIUS = 50;
 
 window.addEventListener('DOMContentLoaded', () => {
 	const canvas = document.querySelector('#id-card');
