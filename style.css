@@ -1,10 +1,15 @@
+/**
+ * Copyright (C) Eliot Partridge, 2019. Licensed under MIT.
+ */
+
 * {
 	box-sizing: border-box;
 }
 
 :root {
 	--bg-color: #fff;
-	--card-color: #aaa;
+	--card-bg-color: #fff;
+	--card-color: #DEE1E6;
 	--text-color: #000;
 	--form-bg-color: #fff;
 	--form-border-color: #ced4da;
@@ -15,6 +20,7 @@
 @media (prefers-color-scheme: dark) {
 	:root {
 		--bg-color: #202124;
+		--card-bg-color: #262729;
 		--card-color: #2D2E31;
 		--text-color: #BDBDBE;
 		--form-bg-color: #3C4043;
@@ -76,7 +82,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .col {
-	padding: .5em .5em;
+	padding: .5em;
 	overflow: auto;
 }
 
@@ -91,17 +97,24 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .button-green {
-	color: white;
-	background-color: green;
+	color: #fff;
+	background-color: #28a745;
+	border-color: #28a745;
 }
 
 .button-green:hover {
-	background-color: darkgreen;
-	border: 1px solid green;
+	background-color: #1e7e34;
+	border-color: #1c7430;
+}
+
+.button-green:focus {
+	box-shadow: 0 0 0 0.2rem rgba(40,167,69,.5);
+	outline: 0;
 }
 
 #id-card {
 	width: 100%;
+	max-width: 600px;
 }
 
 .card {
@@ -122,6 +135,7 @@ h1, h2, h3, h4, h5, h6 {
 	padding: .75em;
 	border-bottom-left-radius: 5px;
 	border-bottom-right-radius: 5px;
+	background-color: var(--card-bg-color);
 }
 
 .form-control {
@@ -145,6 +159,10 @@ h1, h2, h3, h4, h5, h6 {
 	box-shadow: 0 0 0 0.2rem rgba(0, 123, 255,.25);
 }
 
+select.form-control:not([size]):not([multiple]) {
+	height: calc(2.25rem + 1.5px);
+}
+
 .form-group {
 	margin-bottom: 1rem;
 }
@@ -160,9 +178,25 @@ label {
 	top: 99%;
 }
 
-@media screen and (max-width:641px) {
+@media (max-width: 650px) and (orientation: portrait) {
 	.grid-container {
 		display: grid;
 		grid-template-columns: 1fr;
+	}
+}
+
+@media screen and (max-width: 1024px) {
+	.grid-2col {
+		grid-template-columns: 1fr;
+	}
+
+	.col {
+		padding: .25em;
+	}
+}
+
+@media print {
+	.col {
+		overflow: visible;
 	}
 }
